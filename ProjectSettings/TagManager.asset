@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 2649792131
+    locked: 0
+  - name: UI
+    uniqueID: 262434397
     locked: 0
   m_RenderingLayers:
   - Default

@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxEnergy ;
     [SerializeField] private float energyRegen ;
 
+    [SerializeField] private float health;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private GameObject destroyEffect;
+
     void Awake()
     {
         if (Instance == null)
@@ -32,25 +36,35 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         energy = maxEnergy;
         UIController.Instance.UpdateEnergySlider(energy, maxEnergy);
+        health = maxHealth;
+        UIController.Instance.UpdateHealthSlider(health, maxHealth);
     }
 
     void Update()
     {
-        float directionX = Input.GetAxisRaw("Horizontal");
-        float directionY = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("moveX", directionX);
-        animator.SetFloat("moveY", directionY);
-         
-        playerDirection = new Vector2(directionX, directionY).normalized;
+        
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire2"))
+        if(Time.timeScale > 0)
         {
-            EnterBoost();
+            float directionX = Input.GetAxisRaw("Horizontal");
+            float directionY = Input.GetAxisRaw("Vertical");
+
+            animator.SetFloat("moveX", directionX);
+            animator.SetFloat("moveY", directionY);
+
+            playerDirection = new Vector2(directionX, directionY).normalized;
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("Fire2"))
+            {
+                EnterBoost();
+            }
+            else if (Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire2"))
+            {
+                ExitBoost();
+            }
         }
-        else if(Input.GetKeyUp(KeyCode.Space) || Input.GetButtonUp("Fire2"))
-        {
-            ExitBoost();
-        }
+         
+        
     }
     void FixedUpdate()
     {
@@ -84,10 +98,29 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void ExitBoost()
+    public void ExitBoost()
     {
         animator.SetBool("boosting", false);
         boost = 1f;
         boosting = false; 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            TakeDamage(1);
+        }
+    }
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        UIController.Instance.UpdateHealthSlider(health, maxHealth);
+        if (health <= 0)
+        {
+            boost = 0f;
+            gameObject.SetActive(false);
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+        }
     }
 }
