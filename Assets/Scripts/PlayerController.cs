@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 playerDirection;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
+    private Material defaultMaterial;
+    [SerializeField] private Material whiteMaterial;
+
     [SerializeField] private float moveSpeed;
     public float boost = 1f;
     private float boostPower = 5f;
@@ -34,6 +40,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
         energy = maxEnergy;
         UIController.Instance.UpdateEnergySlider(energy, maxEnergy);
         health = maxHealth;
@@ -62,6 +70,11 @@ public class PlayerController : MonoBehaviour
             {
                 ExitBoost();
             }
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Fire1"))
+            {
+                PhaserWeapon.Instance.Shoot();
+            }
+
         }
          
         
@@ -89,8 +102,9 @@ public class PlayerController : MonoBehaviour
 
     private void EnterBoost()
     {
-        if(energy >10f)
+        if(energy >10)
         {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.fire);
             animator.SetBool("boosting", true);
             boost = boostPower;
             boosting = true;
@@ -116,6 +130,9 @@ public class PlayerController : MonoBehaviour
     {
         health -= damage;
         UIController.Instance.UpdateHealthSlider(health, maxHealth);
+        AudioManager.Instance.PlaySound(AudioManager.Instance.hit);
+        spriteRenderer.material = whiteMaterial;
+        StartCoroutine("ResetMaterial");
         if (health <= 0)
         {
             boost = 0f;
@@ -124,5 +141,11 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.GameOver();
             AudioManager.Instance.PlaySound(AudioManager.Instance.ice);
         }
+    }
+
+    IEnumerable ResetMaterial()
+    {
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.material = defaultMaterial;
     }
 }
