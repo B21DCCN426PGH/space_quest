@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
     [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private ParticleSystem engineEffect;
 
     void Awake()
     {
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 ExitBoost();
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetButtonDown("Fire1"))
             {
                 PhaserWeapon.Instance.Shoot();
             }
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("boosting", true);
             boost = boostPower;
             boosting = true;
+            engineEffect.Play();
         }
         
     }
@@ -143,7 +145,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerable ResetMaterial()
+    IEnumerator ResetMaterial()
     {
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.material = defaultMaterial;

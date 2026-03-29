@@ -7,17 +7,17 @@ public class PhaserBullet : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(PhaserWeapon.Instance.speed * Time.deltaTime, 0f);
-        if (transform.position.x > 11)
-            {
-                Destroy(gameObject);
+        if (transform.position.x > 9)
+        {
+            gameObject.SetActive(false);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Destroy(gameObject) ;
+            gameObject.SetActive(false);
         }
     }
 

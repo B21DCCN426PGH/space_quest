@@ -32,15 +32,16 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D (Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
         {
             spriteRenderer.material = whiteMaterial;
             StartCoroutine("ResetMaterial");
         }
     }
-    IEnumerable ResetMaterial()
+    
+    IEnumerator ResetMaterial()
     {
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.material = defaultMaterial;
