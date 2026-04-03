@@ -169,10 +169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8982814da2b794144b08fac3e4a896ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroid
+  whiteMaterial: {fileID: 2100000, guid: 391ec6d889a2c6d4dace2278f2c1465a, type: 2}
+  destroyEffect: {fileID: 2762729322202442252, guid: bf14777af3c471744a1ddf6aee97db17, type: 3}
+  lives: 3
   sprites:
   - {fileID: 2357709100146644040, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: 115542989, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: -235575245, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: -1901002796, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: 687854052, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
-  whiteMaterial: {fileID: 2100000, guid: 391ec6d889a2c6d4dace2278f2c1465a, type: 2}

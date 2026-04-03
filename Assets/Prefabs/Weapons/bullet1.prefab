@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2100837598732757677}
   - component: {fileID: 6743588902894073478}
   - component: {fileID: 7793146384292617011}
-  m_Layer: 0
+  - component: {fileID: 2046889189263191469}
+  m_Layer: 10
   m_Name: bullet1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -142,3 +143,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410a049156bf5234292ec0425a78d007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaserBullet
+--- !u!50 &2046889189263191469
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830395024661402639}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

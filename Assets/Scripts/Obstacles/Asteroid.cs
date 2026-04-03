@@ -1,15 +1,21 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Asteroid : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    [SerializeField] private Sprite[] sprites;
-
     private Material defaultMaterial;
+
     [SerializeField] private Material whiteMaterial;
+
+    [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private int lives;
+
+    [SerializeField] private Sprite[] sprites;
 
     void Start()
     {
@@ -20,11 +26,13 @@ public class Asteroid : MonoBehaviour
         float pushX = Random.Range(-1f, 0);
         float pushY = Random.Range(-1f, 1f);
         rb.linearVelocity = new Vector2(pushX, pushY);
+        float randomScale = Random.Range(0.6f, 1f);
+        transform.localScale = new Vector2(randomScale, randomScale);
     }
 
     private void Update()
     {
-        float moveX = GameManager.Instance.worldSpeed * PlayerController.Instance.boost * Time.deltaTime;
+        float moveX = GameManager.Instance.worldSpeed * Time.deltaTime;
         transform.position += new Vector3(-moveX, 0);
         if (transform.position.x < -11)
         {
@@ -32,15 +40,30 @@ public class Asteroid : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D (Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
         {
-            spriteRenderer.material = whiteMaterial;
-            StartCoroutine("ResetMaterial");
+            TakeDamage(1);
+        }
+        else if (collision.gameObject.CompareTag("Boss"))
+        {
+            TakeDamage(10);
         }
     }
-    
+    public void TakeDamage(int damage)
+    {
+        spriteRenderer.material = whiteMaterial;
+        StartCoroutine("ResetMaterial");
+        AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitRock);
+        lives -= damage;
+        if (lives <= 0)
+        {
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+            AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.boom2);
+            Destroy(gameObject);
+        }
+    }
     IEnumerator ResetMaterial()
     {
         yield return new WaitForSeconds(0.2f);
