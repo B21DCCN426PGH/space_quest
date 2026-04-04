@@ -4,14 +4,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
+
     private Rigidbody2D rb;
-    private Vector2 playerDirection;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
+    private FlashWhiite flashWhite;
 
-    private Material defaultMaterial;
-    [SerializeField] private Material whiteMaterial;
-
+    private Vector2 playerDirection;
     [SerializeField] private float moveSpeed;
     public bool boosting = false;
 
@@ -39,8 +37,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultMaterial = spriteRenderer.material;
+        flashWhite = GetComponent<FlashWhiite>();
+
         energy = maxEnergy;
         UIController.Instance.UpdateEnergySlider(energy, maxEnergy);
         health = maxHealth;
@@ -135,8 +133,7 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         UIController.Instance.UpdateHealthSlider(health, maxHealth);
         AudioManager.Instance.PlaySound(AudioManager.Instance.hit);
-        spriteRenderer.material = whiteMaterial;
-        StartCoroutine("ResetMaterial");
+        flashWhite.Flash();
         if (health <= 0)
         {
             ExitBoost();
@@ -148,9 +145,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator ResetMaterial()
-    {
-        yield return new WaitForSeconds(0.2f);
-        spriteRenderer.material = defaultMaterial;
-    }
 }

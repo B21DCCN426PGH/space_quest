@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2704400172070378369}
   - component: {fileID: 8770684469063818122}
   - component: {fileID: 3253079068965198491}
+  - component: {fileID: -8839114380441971992}
+  - component: {fileID: -6844796168507807971}
   m_Layer: 8
   m_Name: Asteroid
   m_TagString: Obstacle
@@ -169,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8982814da2b794144b08fac3e4a896ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Asteroid
-  whiteMaterial: {fileID: 2100000, guid: 391ec6d889a2c6d4dace2278f2c1465a, type: 2}
   destroyEffect: {fileID: 2762729322202442252, guid: bf14777af3c471744a1ddf6aee97db17, type: 3}
   lives: 3
   sprites:
@@ -178,3 +179,28 @@ MonoBehaviour:
   - {fileID: -235575245, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: -1901002796, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
   - {fileID: 687854052, guid: 81f705ac65ac724449bd465a3ea59218, type: 3}
+--- !u!114 &-8839114380441971992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199592855144445298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fc06ab1ee20654cb4e292bee1dedba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInSpace
+--- !u!114 &-6844796168507807971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199592855144445298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4dcbfe2cb4a1104a9edf369272f9bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashWhiite
+  whiteMaterial: {fileID: 0}

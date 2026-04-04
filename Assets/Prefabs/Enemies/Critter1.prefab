@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 175594476131796343}
   - component: {fileID: 2858029463807542189}
   - component: {fileID: 6916314953728600507}
+  - component: {fileID: 37610449094501922}
   m_Layer: 9
   m_Name: Critter1
   m_TagString: Critter
@@ -176,3 +177,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &37610449094501922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958958101836150126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fc06ab1ee20654cb4e292bee1dedba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatInSpace

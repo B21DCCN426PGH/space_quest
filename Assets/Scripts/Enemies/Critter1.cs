@@ -46,13 +46,6 @@ public class Critter1 : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 1080 * Time.deltaTime);
         }
 
-        float moveX = GameManager.Instance.worldSpeed * Time.deltaTime;
-        transform.position += new Vector3(-moveX, 0);
-
-        if (transform.position.x < -11)
-            {
-                Destroy(gameObject);
-        }
     }
 
     private void GenerateRandomPosition()
