@@ -872,7 +872,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -87573473
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2099384810065395903, guid: 3c1a120dc5b40544bac68231e89cc772, type: 3}
@@ -1701,52 +1701,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
   moveSpeed: -0.4
---- !u!1 &462409172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 462409173}
-  - component: {fileID: 462409174}
-  m_Layer: 0
-  m_Name: BeetlePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &462409173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462409172}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.24454, y: -1.39344, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1320393790}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &462409174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462409172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5046f19aacac4428e8ec3ae1fec99e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectPooler
-  prefab: {fileID: 1420752769571024757, guid: c9e927e8cfa49674b8458c7cf1c3081b, type: 3}
-  poolSize: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,7 +2159,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000027af9f781fbcc7fa839ef09dd152ee7d
+  m_ApplyToSortingLayers: 0000000027af9f781fbcc7fa839ef09d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3757,7 +3711,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -87573473
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -9218,7 +9172,6 @@ Transform:
   - {fileID: 427496003}
   - {fileID: 971510515}
   - {fileID: 379351006}
-  - {fileID: 462409173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1505169129
@@ -9406,10 +9359,10 @@ MonoBehaviour:
   maxPos: {fileID: 1514486323}
   waveNumber: 0
   waves:
-  - pool: {fileID: 462409174}
+  - pool: {fileID: 167749766}
     spawnTimer: 0
-    spawnInterval: 0.5
-    objectsPerWave: 10
+    spawnInterval: 2
+    objectsPerWave: 3
     spawnedObjectsCount: 0
   - pool: {fileID: 159964254}
     spawnTimer: 0
@@ -9420,6 +9373,11 @@ MonoBehaviour:
     spawnTimer: 0
     spawnInterval: 0.5
     objectsPerWave: 3
+    spawnedObjectsCount: 0
+  - pool: {fileID: 167749766}
+    spawnTimer: 0
+    spawnInterval: 0.5
+    objectsPerWave: 10
     spawnedObjectsCount: 0
 --- !u!4 &1587106679
 Transform:

@@ -7,6 +7,7 @@ public class ObjectPooler : MonoBehaviour
     public GameObject prefab;
     public int poolSize = 5;
     private List<GameObject> pool;
+
     void Start()
     {
         CreatePool();

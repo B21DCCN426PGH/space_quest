@@ -25,4 +25,8 @@ public class FlashWhiite : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.material = defaultMaterial;
     }
+    public void Reset()
+    {
+        spriteRenderer.material = defaultMaterial;
+    }
 }

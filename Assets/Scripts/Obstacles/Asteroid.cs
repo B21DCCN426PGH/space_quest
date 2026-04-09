@@ -8,49 +8,76 @@ public class Asteroid : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+
     private FlashWhiite flashWhite;
+    private ObjectPooler destroyEffectPool;
 
-
-    [SerializeField] private GameObject destroyEffect;
-    [SerializeField] private int lives;
+    private int lives;
+    private int maxLives = 3;
+    private int damage = 1 ;
+    private int experienceToGive = 1;
 
     [SerializeField] private Sprite[] sprites;
+    float pushX ;
+    float pushY ;
+    private void OnEnable()
+    {
+        lives = maxLives;
+        transform.rotation = Quaternion.identity;
+        pushX = Random.Range(-1f, 0);
+        pushY = Random.Range(-1f, 1f);
+        if(rb) rb.linearVelocity = new Vector2(pushX, pushY);
+    }
+
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        pushX = Random.Range(-1f, 0);
+        pushY = Random.Range(-1f, 1f);
+        if (rb) rb.linearVelocity = new Vector2(pushX, pushY);
         flashWhite = GetComponent<FlashWhiite>();
+        destroyEffectPool = GameObject.Find("Boom2Pool").GetComponent<ObjectPooler>();
+
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];  
-        float pushX = Random.Range(-1f, 0);
-        float pushY = Random.Range(-1f, 1f);
-        rb.linearVelocity = new Vector2(pushX, pushY);
+
         float randomScale = Random.Range(0.6f, 1f);
         transform.localScale = new Vector2(randomScale, randomScale);
+
+        lives = maxLives;
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Player") )
         {
-            TakeDamage(1);
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            if (player) player.TakeDamage(damage);
         }
-        else if (collision.gameObject.CompareTag("Boss"))
-        {
-            TakeDamage(10);
-        }
+
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool giveExperience)
     {
         AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitRock);
         lives -= damage;
-        flashWhite.Flash();
-        if (lives <= 0)
+        if (lives > 0)
         {
-            Instantiate(destroyEffect, transform.position, transform.rotation);
+            flashWhite.Flash();
+        }
+        else
+        {
+            GameObject destroyEffect = destroyEffectPool.GetPooledObject();
+            destroyEffect.transform.position = transform.position;
+            destroyEffect.transform.rotation = transform.rotation;
+            destroyEffect.transform.localScale = transform.localScale;
+            destroyEffect.SetActive(true);
             AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.boom2);
-            Destroy(gameObject);
+            flashWhite.Reset();
+            gameObject.SetActive(false);
+
+            if(giveExperience)PlayerController.Instance.GetExperience(experienceToGive);
         }
     }
     

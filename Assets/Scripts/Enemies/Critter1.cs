@@ -12,12 +12,14 @@ public class Critter1 : MonoBehaviour
     private float moveTimer;
     private float moveInterval;
 
-    [SerializeField] private GameObject zappedEffect;
-    [SerializeField] private GameObject burnEffect;
+    private ObjectPooler zappedEffectPool;
+    private ObjectPooler burnEffectPool;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        zappedEffectPool = GameObject.Find("Critter1_ZappedPool").GetComponent<ObjectPooler>();
+        burnEffectPool = GameObject.Find("Critter1_BurnPool").GetComponent<ObjectPooler>();
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         moveSpeed = Random.Range(0.5f, 3f);
         GenerateRandomPosition();
@@ -34,9 +36,11 @@ public class Critter1 : MonoBehaviour
         else
         {
             GenerateRandomPosition();
-            moveInterval = Random.Range(0.1f, 2f);
+            moveInterval = Random.Range(0.3f, 2f);
             moveTimer = moveInterval;
         }
+        
+        targetPosition -= new Vector3(GameManager.Instance.worldSpeed * Time.deltaTime,0);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed*Time.deltaTime);
 
         Vector3 relativePos = targetPosition - transform.position;
@@ -59,16 +63,24 @@ public class Critter1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Instantiate(zappedEffect, transform.position, transform.rotation);
+            GameObject zappedEffect = zappedEffectPool.GetPooledObject();
+            zappedEffect.transform.position = transform.position;
+            zappedEffect.transform.rotation = transform.rotation;
+            zappedEffect.SetActive(true);
+            gameObject.SetActive(false);
+
             AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.squished);
-            Destroy(gameObject);
             GameManager.Instance.critterCounter++;
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            Instantiate(burnEffect, transform.position, transform.rotation);
+            GameObject burnEffect = burnEffectPool.GetPooledObject();
+            burnEffect.transform.position = transform.position;
+            burnEffect.transform.rotation = transform.rotation;
+            burnEffect.SetActive(true);
+            gameObject.SetActive(false);
+
             AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.burn);
-            Destroy(gameObject);
             GameManager.Instance.critterCounter++;
         }
     }

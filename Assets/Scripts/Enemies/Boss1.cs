@@ -3,6 +3,8 @@ using UnityEngine;
 public class Boss1 : MonoBehaviour
 {
     private Animator animator;
+    private ObjectPooler destroyEffectPool;
+
     private float speedX;
     private float speedY;
     private bool charging;
@@ -11,12 +13,27 @@ public class Boss1 : MonoBehaviour
     private float switchTimer;
 
     private int lives ;
-    void Start()
+    private int maxLives = 5;
+    private int damage = 10;
+    private int experienceToGive = 20;
+
+    void Awake()
     {
-        lives = 100;
         animator = GetComponent<Animator>();
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        lives = maxLives;
         EnterChargeState();
         AudioManager.Instance.PlaySound(AudioManager.Instance.bossSpawn);
+
+    }
+    void Start()
+    {
+        destroyEffectPool = GameObject.Find("Boom3Pool").GetComponent<ObjectPooler>();
+        
     }
     void Update()
     {
@@ -59,7 +76,7 @@ public class Boss1 : MonoBehaviour
         transform.position += new Vector3(moveX, moveY);
         if (transform.position.x < -11)
         {
-           Destroy(gameObject);
+           gameObject.SetActive(false);
         }
     }
 
@@ -84,19 +101,35 @@ public class Boss1 : MonoBehaviour
         animator.SetBool("charging", true);
         
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
+            if (asteroid) asteroid.TakeDamage(damage,false);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            if (player) player.TakeDamage(damage);
+        }
+    }
 
     public void TakeDamage(int damage)
     {
         AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.hitArmor);
         lives -= damage;
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (lives <= 0)
         {
-            TakeDamage(0);
+            GameObject destroyEffect = destroyEffectPool.GetPooledObject();
+            destroyEffect.transform.position = transform.position;
+            destroyEffect.transform.rotation = transform.rotation;
+            destroyEffect.SetActive(true);
+            AudioManager.Instance.PlayModifiedSound(AudioManager.Instance.boom2);
+            
+            gameObject.SetActive(false);
+            PlayerController.Instance.GetExperience(experienceToGive);
         }
     }
-
 }
