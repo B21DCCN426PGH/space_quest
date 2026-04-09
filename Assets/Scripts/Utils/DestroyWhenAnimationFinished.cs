@@ -7,11 +7,10 @@ public class DestroyWhenAnimationFinished : MonoBehaviour
     void OnEnable()
     {
         animator = GetComponent<Animator>();
-
         StartCoroutine("Deactivate");
     }
 
-    IEnumerable Deactivate()
+    IEnumerator Deactivate()
     {
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         gameObject.SetActive(false);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1420752769571024757
+--- !u!1 &9057956200614491935
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,27 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 769903217478526546}
-  - component: {fileID: -2094494953849591410}
-  - component: {fileID: 152017961089090038}
-  - component: {fileID: 5303718924777351508}
-  - component: {fileID: -1283284756842267663}
-  - component: {fileID: 4318622642144048993}
-  - component: {fileID: 1700051387166096089}
+  - component: {fileID: 6273807593124880301}
+  - component: {fileID: 5632107134708535756}
+  - component: {fileID: 1307932328278566491}
+  - component: {fileID: 6735840642744818098}
+  - component: {fileID: 4745811476590431738}
+  - component: {fileID: 5210092185874815887}
   m_Layer: 12
-  m_Name: Beetlemorph
+  m_Name: Locustmorph
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &769903217478526546
+--- !u!4 &6273807593124880301
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -37,35 +36,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &-2094494953849591410
+--- !u!114 &5632107134708535756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9abb12641095ebf4da13e17daafb6e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: cdad39859e960c44985cd22d0f0e7f58, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Beetlemorph
+  m_EditorClassIdentifier: Assembly-CSharp::Locustmorph
   lives: 0
-  maxLives: 5
-  damage: 1
-  experienceToGive: 1
-  sprites:
-  - {fileID: 5588965506718041536, guid: 440b2630c30a8f142b7b697d450b879d, type: 3}
-  - {fileID: 8176062168316702862, guid: 440b2630c30a8f142b7b697d450b879d, type: 3}
-  - {fileID: -3962547319695902046, guid: 440b2630c30a8f142b7b697d450b879d, type: 3}
-  - {fileID: 1408924143864969165, guid: 440b2630c30a8f142b7b697d450b879d, type: 3}
---- !u!212 &152017961089090038
+  maxLives: 10
+  damage: 2
+  experienceToGive: 2
+  frames:
+  - sprites:
+    - {fileID: 987648193118723531, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+    - {fileID: -1182288027662524906, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+  - sprites:
+    - {fileID: 746690809680363692, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+    - {fileID: 216214826535000004, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+  - sprites:
+    - {fileID: -7989817001677814027, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+    - {fileID: -7408264423918629294, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+  - sprites:
+    - {fileID: 1258916438, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+    - {fileID: 501639832, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
+--- !u!212 &1307932328278566491
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -107,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5588965506718041536, guid: 440b2630c30a8f142b7b697d450b879d, type: 3}
+  m_Sprite: {fileID: 987648193118723531, guid: 0ef2e3e327c13a04d8159eebf5925e2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,13 +124,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!58 &5303718924777351508
-CircleCollider2D:
+--- !u!70 &6735840642744818098
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -152,40 +159,29 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!114 &-1283284756842267663
+  m_Size: {x: 0.7, y: 1.2000003}
+  m_Direction: 0
+--- !u!114 &4745811476590431738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fc06ab1ee20654cb4e292bee1dedba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatInSpace
---- !u!114 &4318622642144048993
+--- !u!114 &5210092185874815887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
+  m_GameObject: {fileID: 9057956200614491935}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4dcbfe2cb4a1104a9edf369272f9bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlashWhiite
---- !u!114 &1700051387166096089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420752769571024757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205c1df6e44470448bf4224e7a079673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FaceMovementDirection

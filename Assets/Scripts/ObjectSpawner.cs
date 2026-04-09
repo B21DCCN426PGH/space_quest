@@ -11,7 +11,6 @@ public class ObjectSpawners : MonoBehaviour
     [SerializeField] private List<Wave> waves;
 
     [System.Serializable]
-
     public class Wave
     {
         public ObjectPooler pool;
@@ -23,7 +22,7 @@ public class ObjectSpawners : MonoBehaviour
     }
     void Update()
     {
-        waves[waveNumber].spawnTimer -= Time.deltaTime * GameManager.Instance.worldSpeed;
+        waves[waveNumber].spawnTimer -= GameManager.Instance.adjustedWorldSpeed;
         if (waves[waveNumber].spawnTimer <= 0)
         {
             waves[waveNumber].spawnTimer += waves[waveNumber].spawnInterval;

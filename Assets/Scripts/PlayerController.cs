@@ -136,6 +136,10 @@ public class PlayerController : MonoBehaviour
         {
             Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
             if (asteroid) asteroid.TakeDamage(1,false);
+        } else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy) enemy.TakeDamage(1);
         }
     }
     public void TakeDamage(int damage)
@@ -177,7 +181,7 @@ public class PlayerController : MonoBehaviour
         }
         UIController.Instance.UpdateExperienceSlider(experience, playerLevels[currentLevel]);
         PhaserWeapon.Instance.LevelUp();
-        maxLevel++;
+        maxHealth++;
         health = maxHealth;
         UIController.Instance.UpdateHealthSlider(health, maxHealth);
         //AudioManager.Instance.PlaySound(AudioManager.Instance.levelUp);
