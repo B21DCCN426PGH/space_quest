@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             Pause();
         }
 
-        if (critterCounter >= 15)
+        if (critterCounter >= 5)
         {
             critterCounter = 0;
             GameObject boss1 = boss1Pool.GetPooledObject();
