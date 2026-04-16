@@ -10161,52 +10161,47 @@ MonoBehaviour:
   - pool: {fileID: 167749766}
     spawnTimer: 0
     spawnInterval: 0.3
-    objectsPerWave: 30
+    objectsPerWave: 70
     spawnedObjectsCount: 0
   - pool: {fileID: 159964254}
     spawnTimer: 0
     spawnInterval: 0.1
-    objectsPerWave: 15
+    objectsPerWave: 5
     spawnedObjectsCount: 0
   - pool: {fileID: 462409174}
     spawnTimer: 0
     spawnInterval: 0.8
     objectsPerWave: 20
     spawnedObjectsCount: 0
-  - pool: {fileID: 167749766}
-    spawnTimer: 0
-    spawnInterval: 0.5
-    objectsPerWave: 30
-    spawnedObjectsCount: 0
-  - pool: {fileID: 159964254}
-    spawnTimer: 0
-    spawnInterval: 0.1
-    objectsPerWave: 30
-    spawnedObjectsCount: 0
   - pool: {fileID: 462409174}
     spawnTimer: 0
     spawnInterval: 0.8
     objectsPerWave: 40
     spawnedObjectsCount: 0
-  - pool: {fileID: 971510516}
+  - pool: {fileID: 167749766}
     spawnTimer: 0
-    spawnInterval: 1
-    objectsPerWave: 4
+    spawnInterval: 0.5
+    objectsPerWave: 20
     spawnedObjectsCount: 0
   - pool: {fileID: 159964254}
     spawnTimer: 0
     spawnInterval: 0.1
-    objectsPerWave: 25
+    objectsPerWave: 10
     spawnedObjectsCount: 0
-  - pool: {fileID: 786715658}
+  - pool: {fileID: 971510516}
     spawnTimer: 0
-    spawnInterval: 0.8
-    objectsPerWave: 15
+    spawnInterval: 0.5
+    objectsPerWave: 5
+    spawnedObjectsCount: 0
+  - pool: {fileID: 159964254}
+    spawnTimer: 0
+    spawnInterval: 0.1
+    objectsPerWave: 7
     spawnedObjectsCount: 0
   - pool: {fileID: 1474693478}
     spawnTimer: 0
-    spawnInterval: 2
-    objectsPerWave: 5
+    spawnInterval: 0.1
+    objectsPerWave: 7
     spawnedObjectsCount: 0
   - pool: {fileID: 167749766}
     spawnTimer: 0
@@ -10216,7 +10211,7 @@ MonoBehaviour:
   - pool: {fileID: 786715658}
     spawnTimer: 0
     spawnInterval: 0.8
-    objectsPerWave: 15
+    objectsPerWave: 10
     spawnedObjectsCount: 0
   - pool: {fileID: 167749766}
     spawnTimer: 0
@@ -10226,11 +10221,11 @@ MonoBehaviour:
   - pool: {fileID: 1474693478}
     spawnTimer: 0
     spawnInterval: 1
-    objectsPerWave: 4
+    objectsPerWave: 1
     spawnedObjectsCount: 0
   - pool: {fileID: 1508786457}
     spawnTimer: 0
-    spawnInterval: 7
+    spawnInterval: 1
     objectsPerWave: 1
     spawnedObjectsCount: 0
 --- !u!4 &1587106679
